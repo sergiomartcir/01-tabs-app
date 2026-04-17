@@ -1,0 +1,7 @@
+{
+  "name": "01-tabs-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

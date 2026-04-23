@@ -10,11 +10,13 @@
   <!--Se crearán las cards correspondientes al número de eventos del array-->
   @for (event of listEvents(); track event.id) {
     <!--Se producirá un evento click en cada una de las card con un mensaje, mediante el AlertController-->
-    <ion-card (click)="showMessage(event.name)" button="true">
+    <ion-card (click)="showMessage(event)" button="true">
       <ion-card-header>
         <ion-card-title>{{event.name}}</ion-card-title>
       </ion-card-header>
-      <ion-card-content>{{event.description}}</ion-card-content>
+      <ion-card-content>
+        <ion-img [src]="event.image" [alt]="event.name"></ion-img>
+      </ion-card-content>
     </ion-card>
   }
 </ion-content>

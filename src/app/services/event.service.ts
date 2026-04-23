@@ -1,0 +1,65 @@
+/*
+    Servicio que se encarga de crear una señal con un array de eventos y retornarlos en modo lectura
+*/
+import { Injectable, signal } from '@angular/core';
+import { Event } from '../interfaces/event.interface';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EventService {
+
+    // se crea una señal para contener los elementos del array
+    private _events = signal<Event[]>([
+        {
+            id: 1, 
+            name: 'Torneo de ping-pong', 
+            image: 'https://media.istockphoto.com/id/1417521713/es/foto/hombre-sirviendo-pelota-de-ping-pong.jpg?s=612x612&w=0&k=20&c=lg2CXie1yk_Aq6wH7MutaTkfpR2_zp8VU-BP3RptA_s=',
+            calendarEvents: [
+                { date: '2026-04-03', title: 'Semifinales ping-pong', color: '#ff6b6b' }, 
+                { date: '2026-04-10', title: 'Final ping-pong', color: '#ff6b6b' }
+            ]
+        },
+        {
+            id: 2, 
+            name: 'Merienda en la cafetería', 
+            description: 'Comida gratis para todos', 
+            image: 'https://res.cloudinary.com/deunyl3k1/image/upload/s--8wRFrtmJ--/f_auto,q_auto:best,w_768/v1/pnor/default/0001/40/ca89391eb3fb26bd53b8b45a3f5972969349da66.png',
+            calendarEvents: [
+                { date: '2026-04-15', title: 'Merienda', color: '#34c759' }
+            ]
+        },
+        {
+            id: 3, 
+            name: 'Charla informativa', 
+            image: 'https://img.freepik.com/foto-gratis/colegas-tiro-medio-aprendiendo_23-2149300713.jpg?semt=ais_hybrid&w=740&q=80',
+            calendarEvents: [
+                { date: '2026-04-24', title: 'Charla', color: '#cbdb1e' }
+            ]
+        },
+        {
+            id: 4, 
+            name: 'Reunión de proyecto', 
+            description: 'Reunión para comprobar progresos', 
+            image: 'https://elartedegestionarproyectos.com/wp-content/uploads/2021/05/work-5382501_1920-1.jpg',
+            calendarEvents: [
+                { date: '2026-04-08', title: 'Sprint', color: '#3634c7' }
+            ]
+        },
+        {
+            id: 5, 
+            name: 'Visita de alumnos', 
+            description: 'Visita de alumnos de un instituto a las oficinas', 
+            image: 'https://ies.educarex.es/wp-content/uploads/sites/154/2025/04/2b3466d3-3b69-4aa6-ac99-72818e041ee9-1280x960.jpeg',
+            calendarEvents: [
+                { date: '2026-04-27', title: 'Visita', color: '#d117d1' }
+            ]
+        }
+    ]);
+
+    // retorna la señal como "solo lectura" porque no es necesario modificarla
+    get events() {
+        return this._events.asReadonly();
+    }
+    
+}

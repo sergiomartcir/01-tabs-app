@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ updateMode ? 'Editar Evento' : 'Nuevo Evento' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="event-form">
+    
+    <div class="main-inputs">
+      <ion-input
+        label="Nombre del evento"
+        labelPlacement="floating"
+        fill="outline"
+        type="text" 
+        [(ngModel)]="eventData.name" 
+        name="name" 
+        required 
+      >
+      </ion-input>
+
+      <ion-textarea
+        label="Descripción" 
+        labelPlacement="floating"
+        fill="outline"
+        [(ngModel)]="eventData.description" 
+        name="description" 
+        placeholder="Añade detalles del evento..."
+        [autoGrow]="true"
+      ></ion-textarea>
+
+      <ion-input
+        label="URL de la Imagen" 
+        labelPlacement="floating"
+        fill="outline"
+        type="url" 
+        [(ngModel)]="eventData.image" 
+        name="image" 
+        placeholder="https://..."
+      ></ion-input>
+    </div>
+
+    @if (eventData.image) {
+      <figure class="image-preview">
+        <ion-img [src]="eventData.image" alt="Vista previa de la imagen"></ion-img>
+      </figure>
+    }
+
+    <h2 class="calendar-title">Hitos del Calendario</h2>
+    
+    @for (calEvent of eventData.calendarEvents; track $index) {
+      <div class="calendar-box">
+        <ion-input class="hitos-input" label="Título" labelPlacement="floating" fill="outline" [(ngModel)]="calEvent.title" name="calTitle{{$index}}"></ion-input>
+        
+        <div class="row-inputs">
+          <div class="date-wrapper">
+            <ion-input label="Fecha" type="date" labelPlacement="floating" fill="outline" [(ngModel)]="calEvent.date" name="calDate{{$index}}"></ion-input>
+          </div>
+          
+          <div class="color-wrapper">
+            <label>Color</label>
+            <input type="color" [(ngModel)]="calEvent.color" name="calColor{{$index}}" class="circle-color-picker">
+          </div>
+
+          <ion-button color="danger" fill="clear" (click)="removeCalendarEvent($index)">
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    }
+
+    <ion-button type="button" expand="block" fill="outline" color="medium" (click)="addCalendarEvent()" class="add-cal-btn">
+      <ion-icon name="add-outline"></ion-icon> Añadir Hito
+    </ion-button>
+
+    <ion-button type="button" (click)="saveEvent()" expand="block" class="submit-button" [disabled]="!eventData.name">
+      {{ updateMode ? 'Guardar Cambios' : 'Crear Evento' }}
+    </ion-button>
+  </div>
+</ion-content>

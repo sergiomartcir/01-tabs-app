@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Events
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--Se crearán las cards correspondientes al número de eventos del array-->
+  @for (event of listEvents(); track event.id) {
+    <!--Se producirá un evento click en cada una de las card con un mensaje, mediante el AlertController-->
+    <ion-card (click)="showMessage(event)" button="true">
+      <ion-card-header>
+        <ion-card-title>{{event.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-img [src]="event.image" [alt]="event.name"></ion-img>
+      </ion-card-content>
+    </ion-card>
+  }
+
+  <!--Botón que redirigirá al formulario para añadir un nuevo evento a la lista-->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="goToForm()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

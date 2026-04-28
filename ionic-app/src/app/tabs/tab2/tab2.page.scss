@@ -1,0 +1,17 @@
+ion-card {
+  max-width: 400px;
+  margin-inline: auto;  // centra la tarjeta en la pantalla
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+ion-card {
+  ion-img {
+    height: 200px; 
+    object-fit: cover;  // asegura que la imagen llene el espacio sin deformarse
+  }
+}
+
+ion-fab {
+  margin-inline-end: 16px; 
+}

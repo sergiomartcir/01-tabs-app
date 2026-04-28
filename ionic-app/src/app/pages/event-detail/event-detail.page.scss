@@ -1,0 +1,41 @@
+article {
+  // Contenedor de la imagen
+  .image-container {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 0 20px 0; // Margen inferior de 20px
+    display: block; // Asegura el comportamiento correcto de figure
+
+    .detail-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Evita que la imagen se deforme
+      display: block;
+    }
+  }
+
+  h1 {
+    font-weight: 700;
+  }
+
+  p {
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+}
+
+ion-fab {
+  margin-inline-end: 16px;
+
+  &.fab-delete {
+    /* Separación estándar del borde inferior */
+    margin-bottom: 16px;
+  }
+
+  &.fab-edit {
+    /* Los 16px de base + los 70px que tenías antes para apilarlos */
+    margin-bottom: 86px; 
+  }
+}

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{eventDetail.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!--sección en la que aparecerán los detalles del evento y su fecha en el calendario-->
+  <article>
+    <figure class="image-container">
+      <ion-img [src]="eventDetail.image" [alt]="eventDetail.name" class="detail-image"></ion-img>
+    </figure>
+  
+    <h1 class="ion-margin-top">{{eventDetail.name}}</h1>
+
+    <ion-text color="medium">
+      <p>{{eventDetail.description}}</p>
+    </ion-text>
+
+    <app-calendar [calendarEvents]="eventDetail.calendarEvents"></app-calendar>
+    
+  </article>
+
+  <!--Botón de editar el evento seleccionado en detail-->
+  <ion-fab class="fab-edit" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="primary" (click)="editEvent()">
+      <ion-icon name="pencil-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!--Botón de eiminar el evento seleccionado en detail-->
+  <ion-fab class="fab-delete" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="danger" (click)="confirmDelete()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
